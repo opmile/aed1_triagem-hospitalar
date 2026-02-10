@@ -56,4 +56,11 @@ int fila_triagem_atender_proximo(FilaTriagem* fila, Paciente* out_paciente);
  */
 void fila_triagem_imprimir(const FilaTriagem* fila);
 
+/*
+ * Lista (imprime) todos os pacientes aguardando atendimento, em ordem de
+ * prioridade (maior -> menor). Como a estrutura interna já é uma lista
+ * encadeada ordenada, a listagem é um percurso do início ao fim.
+ */
+void fila_triagem_listar_pacientes(const FilaTriagem* fila);
+
 #endif /* TRIAGEM_FILA_H */

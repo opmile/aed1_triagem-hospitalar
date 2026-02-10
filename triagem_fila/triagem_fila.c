@@ -122,3 +122,25 @@ void fila_triagem_imprimir(const FilaTriagem* fila) {
         atual = atual->prox;
     }
 }
+
+void fila_triagem_listar_pacientes(const FilaTriagem* fila) {
+    if (!fila) {
+        printf("(fila inexistente)\n");
+        return;
+    }
+
+    if (!fila->inicio) {
+        printf("(fila vazia)\n");
+        return;
+    }
+
+    printf("Pacientes aguardando atendimento (ordem de prioridade):\n");
+    const No* atual = fila->inicio;
+    while (atual) {
+        printf("  [prio=%d] id=%d nome=%s\n",
+               atual->paciente.prioridade,
+               atual->paciente.id,
+               atual->paciente.nome);
+        atual = atual->prox;
+    }
+}
