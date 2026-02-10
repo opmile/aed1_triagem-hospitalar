@@ -61,6 +61,21 @@ void prontuario_para_cada(const Prontuario* prontuario,
                           void (*callback)(const Atendimento* atendimento, void* ctx),
                           void* ctx);
 
+/* Imprime todos os atendimentos em ordem cronológica (do mais antigo ao mais recente). */
+void prontuario_imprimir(const Prontuario* prontuario);
+
+/*
+ * Busca atendimentos por data (comparação exata com o campo data).
+ * Retorna a quantidade de atendimentos encontrados.
+ */
+size_t prontuario_buscar_por_data(const Prontuario* prontuario, const char* data);
+
+/*
+ * Busca atendimentos por palavra-chave na descrição (case-sensitive).
+ * Retorna a quantidade de atendimentos encontrados.
+ */
+size_t prontuario_buscar_por_palavra_chave(const Prontuario* prontuario, const char* palavra);
+
 #ifdef __cplusplus
 }
 #endif

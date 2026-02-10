@@ -1,6 +1,8 @@
 #include "prontuario.h"
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 typedef struct NoAtendimento {
     Atendimento atendimento;
@@ -91,4 +93,62 @@ void prontuario_para_cada(const Prontuario* prontuario,
         callback(&atual->atendimento, ctx);
         atual = atual->prox;
     }
+}
+
+static void atendimento_imprimir(const Atendimento* a) {
+    printf("- Atendimento %d | Data: %s\n", a->id_atendimento, a->data);
+    printf("  Descrição: %s\n", a->descricao);
+}
+
+void prontuario_imprimir(const Prontuario* prontuario) {
+    if (!prontuario) {
+        printf("(prontuário inexistente)\n");
+        return;
+    }
+
+    if (!prontuario->inicio) {
+        printf("(prontuário vazio)\n");
+        return;
+    }
+
+    printf("Histórico de atendimentos (total=%zu):\n", prontuario->tamanho);
+    const NoAtendimento* atual = prontuario->inicio;
+    while (atual) {
+        atendimento_imprimir(&atual->atendimento);
+        atual = atual->prox;
+    }
+}
+
+size_t prontuario_buscar_por_data(const Prontuario* prontuario, const char* data) {
+    if (!prontuario || !data) return 0;
+
+    size_t encontrados = 0;
+    const NoAtendimento* atual = prontuario->inicio;
+
+    while (atual) {
+        if (strcmp(atual->atendimento.data, data) == 0) {
+            atendimento_imprimir(&atual->atendimento);
+            encontrados++;
+        }
+        atual = atual->prox;
+    }
+
+    return encontrados;
+}
+
+size_t prontuario_buscar_por_palavra_chave(const Prontuario* prontuario, const char* palavra) {
+    if (!prontuario || !palavra) return 0;
+
+    size_t encontrados = 0;
+    const NoAtendimento* atual = prontuario->inicio;
+
+    while (atual) {
+        if (strstr(atual->atendimento.descricao, palavra) != NULL) {
+            atendimento_imprimir(&atual->atendimento);
+            encontrados++;
+        }
+        atual = atual->prox;
+    }
+
+    return encontrados;
 }
