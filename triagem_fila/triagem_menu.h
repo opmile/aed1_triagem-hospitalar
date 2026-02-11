@@ -3,7 +3,7 @@
 
 #include "triagem_fila.h"
 
-/* Executa o menu de triagem. Retorna ao chamador quando o usuário escolher voltar. */
+// executa o menu de triagem
 void menu_triagem(FilaTriagem* fila);
 
-#endif /* TRIAGEM_MENU_H */
+#endif 
