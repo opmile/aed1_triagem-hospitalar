@@ -1,6 +1,7 @@
+#include <stdio.h>
+
 #include "triagem_menu.h"
 
-#include <stdio.h>
 
 #include "../utils/io_utils.h"
 
@@ -31,19 +32,19 @@ void menu_triagem(FilaTriagem* fila) {
                 ler_linha("Nome: ", p.nome, sizeof(p.nome));
                 if (p.nome[0] == '\0') {
                     printf("Nome inválido.\n");
-                    proximo_id--; /* desfaz id */
+                    proximo_id--; 
                     break;
                 }
 
                 if (!ler_int("Prioridade (maior = mais urgente): ", &p.prioridade)) {
                     printf("Prioridade inválida.\n");
-                    proximo_id--; /* desfaz id */
+                    proximo_id--; 
                     break;
                 }
 
                 if (!fila_triagem_inserir(fila, p)) {
                     printf("Falha ao inserir (memória).\n");
-                    proximo_id--; /* desfaz id */
+                    proximo_id--; 
                     break;
                 }
 
@@ -60,14 +61,14 @@ void menu_triagem(FilaTriagem* fila) {
                 if (!fila_triagem_atender_proximo(fila, &p)) {
                     printf("Fila vazia.\n");
                 } else {
-                    printf("Encaminhado para atendimento: [prio=%d] id=%d nome=%s\n",
+                    printf("Encaminhado para atendimento: [prior=%d] id=%d nome=%s\n",
                            p.prioridade, p.id, p.nome);
                 }
                 break;
             }
 
             default:
-                printf("Opção inválida.\n");
+                printf("Opção inválida!\n");
                 break;
         }
 
