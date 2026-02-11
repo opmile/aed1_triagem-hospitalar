@@ -6,16 +6,16 @@
 #include "prontuario/prontuario_menu.h"
 #include "utils/io_utils.h"
 
-int main(void) {
+int main() {
     FilaTriagem* fila = fila_triagem_criar();
     if (!fila) {
-        fprintf(stderr, "Erro: falha ao criar fila de triagem.\n");
+        printf("Erro: falha ao criar fila de triagem.\n");
         return 1;
     }
 
     Prontuario* prontuario = prontuario_criar();
     if (!prontuario) {
-        fprintf(stderr, "Erro: falha ao criar prontuário.\n");
+        printf("Erro: falha ao criar prontuário.\n");
         fila_triagem_destruir(fila);
         return 1;
     }
