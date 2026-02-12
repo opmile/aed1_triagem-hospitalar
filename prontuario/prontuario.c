@@ -1,8 +1,8 @@
-#include "prontuario.h"
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+#include "prontuario.h"
 
 typedef struct NoAtendimento {
     Atendimento atendimento;
@@ -15,7 +15,7 @@ struct Prontuario {
     size_t tamanho;
 };
 
-static NoAtendimento* no_criar(Atendimento atendimento) {
+ NoAtendimento* no_criar(Atendimento atendimento) {
     NoAtendimento* no = (NoAtendimento*)malloc(sizeof(NoAtendimento));
     if (!no) return NULL;
     no->atendimento = atendimento;
@@ -49,7 +49,7 @@ int prontuario_vazio(const Prontuario* prontuario) {
     return (!prontuario || prontuario->tamanho == 0) ? 1 : 0;
 }
 
-size_t prontuario_tamanho(const Prontuario* prontuario) {
+int prontuario_tamanho(const Prontuario* prontuario) {
     return prontuario ? prontuario->tamanho : 0;
 }
 
@@ -95,7 +95,7 @@ void prontuario_para_cada(const Prontuario* prontuario,
     }
 }
 
-static void atendimento_imprimir(const Atendimento* a) {
+void atendimento_imprimir(const Atendimento* a) {
     printf("- Atendimento %d | Data: %s\n", a->id_atendimento, a->data);
     printf("  Descrição: %s\n", a->descricao);
 }
@@ -119,7 +119,7 @@ void prontuario_imprimir(const Prontuario* prontuario) {
     }
 }
 
-size_t prontuario_buscar_por_data(const Prontuario* prontuario, const char* data) {
+int prontuario_buscar_por_data(const Prontuario* prontuario, const char* data) {
     if (!prontuario || !data) return 0;
 
     size_t encontrados = 0;
@@ -136,10 +136,10 @@ size_t prontuario_buscar_por_data(const Prontuario* prontuario, const char* data
     return encontrados;
 }
 
-size_t prontuario_buscar_por_palavra_chave(const Prontuario* prontuario, const char* palavra) {
+intt prontuario_buscar_por_palavra_chave(const Prontuario* prontuario, const char* palavra) {
     if (!prontuario || !palavra) return 0;
 
-    size_t encontrados = 0;
+    intt encontrados = 0;
     const NoAtendimento* atual = prontuario->inicio;
 
     while (atual) {
