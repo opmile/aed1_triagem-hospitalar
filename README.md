@@ -73,3 +73,6 @@ clang -std=c11 -Wall -Wextra -Wpedantic -O2 -o bin/app main.c triagem_fila/*.c p
 
 ./bin/app
 ```
+
+
+
