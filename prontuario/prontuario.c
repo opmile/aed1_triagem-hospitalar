@@ -15,7 +15,7 @@ struct Prontuario {
     size_t tamanho;
 };
 
-static NoAtendimento* no_criar(Atendimento atendimento) {
+NoAtendimento* no_criar(Atendimento atendimento) {
     NoAtendimento* no = (NoAtendimento*)malloc(sizeof(NoAtendimento));
     if (!no) return NULL;
     no->atendimento = atendimento;
@@ -95,7 +95,7 @@ void prontuario_para_cada(const Prontuario* prontuario,
     }
 }
 
-static void atendimento_imprimir(const Atendimento* a) {
+void atendimento_imprimir(const Atendimento* a) {
     printf("- Atendimento %d | Data: %s\n", a->id_atendimento, a->data);
     printf("  Descrição: %s\n", a->descricao);
 }
