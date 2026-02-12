@@ -14,7 +14,7 @@ struct FilaTriagem {
     int tamanho;
 };
 
-No* no_criar(Paciente paciente) {
+static No* no_criar(Paciente paciente) {
     No* no = (No*)malloc(sizeof(No));
     if (!no) return NULL;
     no->paciente = paciente;

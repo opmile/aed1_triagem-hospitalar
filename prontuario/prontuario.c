@@ -15,7 +15,7 @@ struct Prontuario {
     size_t tamanho;
 };
 
- NoAtendimento* no_criar(Atendimento atendimento) {
+static NoAtendimento* no_criar(Atendimento atendimento) {
     NoAtendimento* no = (NoAtendimento*)malloc(sizeof(NoAtendimento));
     if (!no) return NULL;
     no->atendimento = atendimento;
@@ -95,7 +95,7 @@ void prontuario_para_cada(const Prontuario* prontuario,
     }
 }
 
-void atendimento_imprimir(const Atendimento* a) {
+static void atendimento_imprimir(const Atendimento* a) {
     printf("- Atendimento %d | Data: %s\n", a->id_atendimento, a->data);
     printf("  Descrição: %s\n", a->descricao);
 }
@@ -136,10 +136,10 @@ int prontuario_buscar_por_data(const Prontuario* prontuario, const char* data) {
     return encontrados;
 }
 
-intt prontuario_buscar_por_palavra_chave(const Prontuario* prontuario, const char* palavra) {
+int prontuario_buscar_por_palavra_chave(const Prontuario* prontuario, const char* palavra) {
     if (!prontuario || !palavra) return 0;
 
-    intt encontrados = 0;
+    int encontrados = 0;
     const NoAtendimento* atual = prontuario->inicio;
 
     while (atual) {
