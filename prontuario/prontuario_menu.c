@@ -1,7 +1,6 @@
-#include "prontuario_menu.h"
-
 #include <stdio.h>
 
+#include "prontuario_menu.h"
 #include "../utils/io_utils.h"
 
 void menu_prontuario(Prontuario* prontuario) {
@@ -32,20 +31,20 @@ void menu_prontuario(Prontuario* prontuario) {
                 ler_linha("Data (DD/MM/AAAA): ", a.data, sizeof(a.data));
                 if (a.data[0] == '\0') {
                     printf("Data inválida.\n");
-                    proximo_id_atendimento--; /* desfaz id */
+                    proximo_id_atendimento--; 
                     break;
                 }
 
                 ler_linha("Descrição: ", a.descricao, sizeof(a.descricao));
                 if (a.descricao[0] == '\0') {
                     printf("Descrição inválida.\n");
-                    proximo_id_atendimento--; /* desfaz id */
+                    proximo_id_atendimento--; 
                     break;
                 }
 
                 if (!prontuario_adicionar(prontuario, a)) {
                     printf("Falha ao registrar (memória).\n");
-                    proximo_id_atendimento--; /* desfaz id */
+                    proximo_id_atendimento--; 
                     break;
                 }
 
@@ -60,16 +59,16 @@ void menu_prontuario(Prontuario* prontuario) {
             case 3: {
                 char data[11];
                 ler_linha("Data (DD/MM/AAAA): ", data, sizeof(data));
-                size_t qtd = prontuario_buscar_por_data(prontuario, data);
-                printf("Encontrados: %zu\n", qtd);
+                int qtd = prontuario_buscar_por_data(prontuario, data);
+                printf("Encontrados: %d\n", qtd);
                 break;
             }
 
             case 4: {
                 char palavra[101];
                 ler_linha("Palavra-chave: ", palavra, sizeof(palavra));
-                size_t qtd = prontuario_buscar_por_palavra_chave(prontuario, palavra);
-                printf("Encontrados: %zu\n", qtd);
+                int qtd = prontuario_buscar_por_palavra_chave(prontuario, palavra);
+                printf("Encontrados: %d\n", qtd);
                 break;
             }
 
