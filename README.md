@@ -63,3 +63,13 @@ Essas escolhas permitem inserções e remoções eficientes, além de lidar adeq
 ## Considerações Finais
 
 Este projeto visa consolidar a base conceitual da disciplina de Algoritmos e Estruturas de Dados I, demonstrando a aplicação prática de listas encadeadas em um problema realista, com foco em clareza, organização e eficiência algorítmica.
+
+---
+
+### Executar projeto
+
+```bash
+clang -std=c11 -Wall -Wextra -Wpedantic -O2 -o bin/app main.c triagem_fila/*.c prontuario/*.c utils/*.c
+
+./bin/app
+```
